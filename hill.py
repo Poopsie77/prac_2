@@ -99,11 +99,11 @@ def main():
         print(f'[{' '.join(map(str, row))}]')
 
     if choice == 1:
-        plaintext = input('Введите текст для шифрования: ')
+        plaintext = input('Введите текст для зашифрования: ')
         ciphertext = hill_encrypt(plaintext, key_matrix)
         print('Зашифрованный текст:', ciphertext)
     else:
-        ciphertext = input('Введите текст для дешифрования: ')
+        ciphertext = input('Введите текст для расшифрования: ')
         plaintext = hill_decrypt(ciphertext, key_matrix)
         print('Расшифрованный текст:', plaintext)
 
