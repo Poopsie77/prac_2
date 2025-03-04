@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # Функция для создания матрицы ключа
 def create_key_matrix(size):
     key_matrix = []
@@ -13,7 +12,6 @@ def create_key_matrix(size):
         key_matrix.append(row)
     return np.array(key_matrix)
 
-
 # Функция для вычисления обратной матрицы
 def inv_matrix(matrix, size):
     det = int(round(np.linalg.det(matrix)))  # Определитель матрицы
@@ -25,18 +23,15 @@ def inv_matrix(matrix, size):
     inv_matrix = (adjugate * det_inv) % 33  # Обратная матрица
     return inv_matrix
 
-
 # Функция для преобразования текста в числа
 def text_in_numbers(text):
     alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-    return [alphabet.index(char.lower()) for char in text if char.lower() in alphabet]
-
+    return [alphabet.index(char.upper()) for char in text if char.upper() in alphabet]
 
 # Функция для преобразования числа в текст
 def numbers_in_text(numbers):
     alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
     return ''.join([alphabet[num] for num in numbers])
-
 
 # Функция для шифрования
 def hill_encrypt(plaintext, key_matrix):
@@ -56,7 +51,6 @@ def hill_encrypt(plaintext, key_matrix):
 
     return numbers_in_text(ciphernum)
 
-
 # Функция для расшифрования
 def hill_decrypt(ciphertext, key_matrix):
     size = len(key_matrix)
@@ -73,7 +67,6 @@ def hill_decrypt(ciphertext, key_matrix):
         plaintext_numbers.extend(decrypted_block.flatten().tolist())
 
     return numbers_in_text(plaintext_numbers)
-
 
 # Основная функция
 def main():
@@ -99,14 +92,13 @@ def main():
         print(f'[{' '.join(map(str, row))}]')
 
     if choice == 1:
-        plaintext = input('Введите текст для зашифрования: ')
+        plaintext = input('Введите текст для шифрования: ')
         ciphertext = hill_encrypt(plaintext, key_matrix)
         print('Зашифрованный текст:', ciphertext)
     else:
-        ciphertext = input('Введите текст для расшифрования: ')
+        ciphertext = input('Введите текст для дешифрования: ')
         plaintext = hill_decrypt(ciphertext, key_matrix)
         print('Расшифрованный текст:', plaintext)
-
 
 if __name__ == '__main__':
     main()
